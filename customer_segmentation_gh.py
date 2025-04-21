@@ -394,9 +394,9 @@ plt.show()
 
 """# (9) Load the Datasets to Google BigQuery"""
 
-!pip install --upgrade pandas-gbq google-auth
-from google.colab import auth
-auth.authenticate_user()
+#!pip install --upgrade pandas-gbq google-auth
+#from google.colab import auth
+#auth.authenticate_user()
 
 df_clustered = pd.concat([df_merged, customers_clustered['Cluster']], axis=1) # concatenate the columns of cluster number to the original dataset
 df_clustered = pd.concat([df_clustered, customers_clustered['Cluster_Label']], axis=1) # concatenate the columns of cluster labels to the original dataset
