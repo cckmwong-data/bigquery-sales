@@ -1,0 +1,34 @@
+name: Run Python Script with BigQuery
+
+on:
+  schedule:
+    - cron: '10 8 * * *'  # every day at 910 AM UTC
+  workflow_dispatch:  # allows manual trigger
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Authenticate with Google Cloud
+        env:
+          GCP_CREDS: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+        run: |
+          echo "$GCP_CREDS" > gcloud-key.json
+          gcloud auth activate-service-account --key-file=gcloud-key.json
+          gcloud config set project new-project-456705
+          export GOOGLE_APPLICATION_CREDENTIALS=gcloud-key.json
+
+      - name: Run Python Script
+        run: python test_github.py
