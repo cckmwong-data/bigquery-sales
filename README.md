@@ -52,11 +52,9 @@ This pipeline ingests raw datasets from Google Sheets, applies customer segmenta
 
 ---
 
-## Optional: Screenshots / Demo
+## ETL Process
+![ETL drawio](https://github.com/user-attachments/assets/0bb7beb7-9bbc-449d-9b5d-ac4ef705c02f)
 
-_Add screenshots of your Power BI dashboard here!_
-
----
 
 ## Schedule & Maintenance
 
