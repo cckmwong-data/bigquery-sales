@@ -12,8 +12,8 @@ This pipeline ingests raw datasets from Google Sheets, applies customer segmenta
 ## Technologies Used
 
 - **Python** at Google Colab: `pandas`, `kmodes`, `gower`, `prince`, `sklearn`, `pandas-gbq`
-- **Google BigQuery**: SQL
 - **GitHub Actions** for automation of Python scripts
+- **Google BigQuery**: SQL
 - **Power BI** for real-time dashboards
 
 ---
