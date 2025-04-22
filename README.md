@@ -27,7 +27,8 @@ This pipeline ingests raw datasets from Google Sheets, applies customer segmenta
 
 ---
 ## ETL Process
-![ETL drawio](https://github.com/user-attachments/assets/0bb7beb7-9bbc-449d-9b5d-ac4ef705c02f)
+![ETL drawio](https://github.com/user-attachments/assets/6d45cd3c-7446-4d40-acad-be38339f49e8)
+
 ---
 
 ## Workflow Overview
