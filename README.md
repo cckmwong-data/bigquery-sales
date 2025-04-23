@@ -6,15 +6,15 @@ This project automates a complete customer segmentation workflow, integrating ra
 
 ## Project Summary
 
-This pipeline ingests raw datasets from Google Sheets, applies customer segmentation using the **K-Prototypes algorithm**, and loads results into **Google BigQuery**, where **Power BI dashboards** visualize the final segments. The entire process is automated using **GitHub Actions** and scheduled to run daily at **xxxx London time**.
+This pipeline ingests raw datasets from Google Sheets, applies customer segmentation using the **K-Prototypes algorithm**, and loads results into **Google BigQuery**, where **Power BI dashboards** provides business insights about the sales and customer segments. The entire process is automated using **GitHub Actions** and scheduled to run daily at 10pm London time**.
 
 ---
 ## Technologies Used
 
-- **Python** at Google Colab: `pandas`, `kmodes`, `gower`, `prince`, `sklearn`, `pandas-gbq`
-- **GitHub Actions** for automation of Python scripts
+- **Python**: `pandas`, `kmodes`, `gower`, `prince`, `sklearn`, `pandas-gbq`
+- **GitHub Actions**: automation of Python scripts
 - **Google BigQuery**: SQL
-- **Power BI** for real-time dashboards
+- **Power BI**: real-time dashboards
 
 ---
 ## Highlights
@@ -27,14 +27,13 @@ This pipeline ingests raw datasets from Google Sheets, applies customer segmenta
 
 ---
 ## ETL Process
-![ETL drawio](https://github.com/user-attachments/assets/6d45cd3c-7446-4d40-acad-be38339f49e8)
-
+![ETL Pipeline](./ETL_pipeline.png)
 ---
 
 ## Workflow Overview
 
 1. **Data Collection**  
-   - Raw tables (`customers`, `sales`, `products`) maintained in Google Sheets by business users
+   - Raw tables (`customers`, `sales`, `products`) maintained in Google Sheets by business users (e.g. Sales Department)
 
 2. **Data Processing + Clustering**  
    - Python script at **Google Colab** loads data, cleans it, and applies **K-Prototypes clustering**
@@ -50,7 +49,7 @@ This pipeline ingests raw datasets from Google Sheets, applies customer segmenta
 
 5. **Power BI Dashboard**  
    - Power BI connects directly to BigQuery views
-   - Dashboards auto-refresh daily to reflect the most current segmentation and sales data
+   - Dashboards auto-refresh daily at 11pm London time to reflect the most current segmentation and sales data
 
 ---
 
@@ -58,8 +57,8 @@ This pipeline ingests raw datasets from Google Sheets, applies customer segmenta
 
 | Layer           | Schedule             | Managed By         |
 |----------------|----------------------|---------------------|
-| Python Script  | Daily @ XXXX AM BST  | GitHub Actions      |
+| Python Script  | Daily @ 10 PM BST    | GitHub Actions      |
 | BigQuery Views | Live / real-time     |                     |
-| Power BI       | Daily (after Python) | Power BI Scheduler  |
+| Power BI       | Daily @ 11 PM BST    | Power BI Scheduler  |
 
 ---
