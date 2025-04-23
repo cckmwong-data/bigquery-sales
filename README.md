@@ -33,7 +33,7 @@ This pipeline ingests raw datasets from Google Sheets, applies customer segmenta
 ## Workflow Overview
 
 1. **Data Collection**  
-   - Raw tables (customers(http://yahoo.com), sales, products) maintained in Google Sheets by business users (e.g. Sales Department)
+   - Raw tables ([customers](https://docs.google.com/spreadsheets/d/1-NdLEzPBOxY7NfzDngoS4id9ekZ-eqIF7ZnX6JXdweg/edit?usp=sharing), [sales](https://docs.google.com/spreadsheets/d/1j3R2rUUAlUZO-2-x2OlMeMV23wgXZy7LfatlnCLsDJk/edit?usp=sharing), [products](https://docs.google.com/spreadsheets/d/1HpCKgERS0F9qjHh3y0_GZ988JjX4vtKBX5rIksCgB5I/edit?usp=sharing) maintained in Google Sheets by business users (e.g. Sales Department)
 
 2. **Data Processing + Clustering**  
    - Python script at **Google Colab** loads data, cleans it, and applies **K-Prototypes clustering**
