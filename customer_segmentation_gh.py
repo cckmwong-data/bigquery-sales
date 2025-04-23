@@ -212,8 +212,8 @@ plt.show()
 # We use gower distance to calculate Silhouette Score, due to the presence of categorical data
 #!pip install gower
 
-#from sklearn.metrics import silhouette_score
-#import gower
+from sklearn.metrics import silhouette_score
+import gower
 
 # Locating the best number of clusters by searching for the one with the highest Silhouette Score
 # the best k is in-line with the results from the above Elbow Curve
