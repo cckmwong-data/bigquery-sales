@@ -409,7 +409,8 @@ to_gbq(
     df_customers_clustered,
     destination_table='portfolio.customers',
     project_id='new-project-456705',
-    if_exists='replace'
+    if_exists='replace',
+    credentials=credentials
 )
 
 # Write the sales dataset to BigQuery
@@ -417,7 +418,8 @@ to_gbq(
     df_sales,
     destination_table='portfolio.sales',
     project_id='new-project-456705',
-    if_exists='replace'
+    if_exists='replace',
+    credentials=credentials
 )
 
 # Write the products dataset to BigQuery
@@ -425,6 +427,7 @@ to_gbq(
     df_products,
     destination_table='portfolio.products',
     project_id='new-project-456705',
-    if_exists='replace'
+    if_exists='replace',
+    credentials=credentials
 )
 
