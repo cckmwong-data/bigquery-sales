@@ -27,7 +27,7 @@ This pipeline ingests raw datasets from Google Sheets, applies customer segmenta
 
 ---
 ## ETL Process
-!(./ETL_pipeline.png)
+![Alt text](./ETL_pipeline.png)
 ---
 
 ## Workflow Overview
