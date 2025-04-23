@@ -306,31 +306,27 @@ customers_clustered.groupby('Cluster').agg({"Age":"median",
 # Age is one of the most distinctive features for the clustering labels
 # Automate the assignment of cluster labels ("Affluent Independents", "Established Protectors" and "Budget Starters")
 # by comparing the age of each group
-age = {}
+ages = {}
 clusters = {}
-min_age = 999
-max_age = 0
 
 for i in range(0, best_k):
-  age[i] = customers_clustered[customers_clustered['Cluster'] == i]['Age'].median()
-  #print(age[i])
-  if (age[i] < min_age):
-    min_age = age[i]
-    clusters[i] = "Budget Starters"
-  elif (age[i] > max_age):
-    max_age = age[i]
-    clusters[i] = "Established Protectors"
-  else:
-    clusters[i] = "Affluent Independents"
+  ages[i] = customers_clustered[customers_clustered['Cluster'] == i]['Age'].median()
 
-for i in range(0, best_k):
-  print(i, clusters[i])
+# sort the ages dictionary by the median ages from ascending order
+sorted_ages = sorted(ages.items(), key=lambda item: item[1])
 
-# Assign the cluster labels for each row
-for i in range(0, len(customers_clustered)):
-  for j in range(0, best_k):
-    if customers_clustered.loc[i, "Cluster"] == j:
-        customers_clustered.loc[i, "Cluster_Label"] = clusters[j]
+sorted_ages
+
+clusters = {
+    sorted_ages[0][0]: "Budget Starters",
+    sorted_ages[1][0]: "Affluent Independents",
+    sorted_ages[2][0]: "Established Protectors"
+}
+
+clusters
+
+# Assign the cluster labels for each row by mapping to the above indices and labels
+customers_clustered["Cluster_Label"] = customers_clustered["Cluster"].map(clusters)
 
 customers_clustered
 
