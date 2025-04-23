@@ -58,7 +58,7 @@ This pipeline ingests raw datasets from Google Sheets, applies customer segmenta
 | Layer           | Schedule             | Managed By         |
 |----------------|----------------------|---------------------|
 | Python Script  | Daily @ 10 PM BST    | GitHub Actions      |
-| BigQuery Views | Live / real-time     |                     |
+| BigQuery Views | Live / real-time     | Google BigQuery     |
 | Power BI       | Daily @ 11 PM BST    | Power BI Scheduler  |
 
 ---
