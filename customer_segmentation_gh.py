@@ -399,6 +399,10 @@ df_customers_clustered = pd.merge(df_customers, df_clustered[columns_to_add], on
 df_customers_clustered
 
 from pandas_gbq import to_gbq
+from google.oauth2 import service_account
+
+credentials = service_account.Credentials.from_service_account_file("gcloud-key.json")
+
 
 # Write the customer dataset to BigQuery
 to_gbq(
