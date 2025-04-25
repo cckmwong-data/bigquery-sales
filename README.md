@@ -6,7 +6,7 @@ This project automates a complete customer segmentation workflow, integrating ra
 
 ## Project Summary
 
-This pipeline ingests raw datasets from Google Sheets, applies customer segmentation using the **K-Prototypes algorithm**, and loads results into **Google BigQuery**, where **Power BI dashboards** provides business insights about the sales and customer segments. The entire process is automated using **GitHub Actions** and scheduled to run daily at 10pm London time**.
+This pipeline ingests raw datasets from Google Sheets, applies customer segmentation using the **K-Prototypes algorithm**, and loads results into **Google BigQuery**, where **Power BI dashboards** provides business insights about the sales and customer segments. The entire process is automated using **GitHub Actions** and scheduled to run daily at 10pm London time, followed by a scheduled refresh of the BI report at 11pm London time.
 
 ---
 ## Technologies Used
@@ -40,7 +40,7 @@ This pipeline ingests raw datasets from Google Sheets, applies customer segmenta
    - Mixed-type features handled using **FAMD** and **Gower distance**
   
 3. **GitHub Actions Automation**  
-   - Python script is loaded to Github and is scheduled to run daily using GitHub Actions
+   - Python script is loaded to Github and is scheduled to run daily at 10pm using GitHub Actions
    - Uses **secure service account authentication** via GitHub Secrets
 
 4. **BigQuery Integration**  
@@ -49,7 +49,7 @@ This pipeline ingests raw datasets from Google Sheets, applies customer segmenta
 
 5. **Power BI Dashboard**  
    - Power BI connects directly to BigQuery views
-   - Dashboards auto-refresh daily at 11pm London time to reflect the most current segmentation and sales data
+   - Dashboards auto-refresh daily at 11pm to reflect the most current segmentation and sales data
 
 ---
 
@@ -57,8 +57,8 @@ This pipeline ingests raw datasets from Google Sheets, applies customer segmenta
 
 | Layer           | Schedule             | Managed By         |
 |----------------|----------------------|---------------------|
-| Python Script  | Daily @ 10 PM BST    | GitHub Actions      |
+| Python Script  | Daily @ 10pm BST     | GitHub Actions      |
 | BigQuery Views | Live / real-time     | Google BigQuery     |
-| Power BI       | Daily @ 11 PM BST    | Power BI Scheduler  |
+| Power BI       | Daily @ 11pm BST     | Power BI Scheduler  |
 
 ---
