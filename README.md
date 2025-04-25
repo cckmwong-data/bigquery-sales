@@ -1,4 +1,4 @@
-# Sales Analysis and Customer Segmentation Project
+# Customer Clustering and Sales Analytics on Active Policyholders
 
 This project automates a complete customer segmentation workflow, integrating raw input from Google Sheets, clustering analysis with K-Prototypes, and daily-updated Power BI dashboards. It's designed to provide marketing and sales teams with actionable insights — fully automated, cloud-based, and production-ready.
 
