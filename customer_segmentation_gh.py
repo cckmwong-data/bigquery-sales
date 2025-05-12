@@ -297,7 +297,7 @@ customers_clustered.groupby('Cluster').agg({"Age":"median",
 ages = {}
 clusters = {}
 
-for i in range(0, best_k):
+for i in range(0, 3):
   ages[i] = customers_clustered[customers_clustered['Cluster'] == i]['Age'].median()
 
 # sort the ages dictionary by the median ages from ascending order
