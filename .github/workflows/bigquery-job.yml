@@ -32,4 +32,4 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS=gcloud-key.json
 
       - name: Run Python Script
-        run: python customer_segmentation_gh.py
+        run: python Customer Segmentation_ai.py
