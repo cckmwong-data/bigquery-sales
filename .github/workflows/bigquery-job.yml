@@ -8,7 +8,8 @@ on:
 jobs:
   run-python:
     runs-on: ubuntu-latest
-
+    env:
+      RUN_GENAI: "false"      # Gen-AI disabled in daily run
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
