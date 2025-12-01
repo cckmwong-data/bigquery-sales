@@ -329,7 +329,7 @@ customers_clustered
 
 #!pip install -q -U google-genai
 
-from google.colab import userdata
+#from google.colab import userdata
 import google.genai as genai
 
 api_key = userdata.get('GEMINI_API_KEY') # Extract the Gemini API key from secrets
