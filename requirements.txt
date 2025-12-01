@@ -8,4 +8,6 @@ gower
 prince
 google-auth
 pandas-gbq
+
 google-cloud-bigquery
+google-genai
