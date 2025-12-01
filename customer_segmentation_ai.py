@@ -266,7 +266,7 @@ The model’s performance is evaluated using the **Silhouette Score**, which is 
 """
 
 # We use gower distance to calculate Silhouette Score, due to the presence of categorical data
-!pip install gower
+#!pip install gower
 
 from sklearn.metrics import silhouette_score
 import gower
@@ -288,7 +288,7 @@ sil_score = silhouette_score(gower_dist, cluster_labels, metric='precomputed')
 print('Silhouette Score: ', sil_score)
 
 # we use FAMD for reducing the dimensions of mixed data
-!pip install prince
+#!pip install prince
 
 df_c # dataframe with scaled numerical data and categorical labels (no clustering labels)
 
@@ -327,7 +327,7 @@ After clustering the customers into three distinct segments, we analyze each gro
 
 customers_clustered
 
-!pip install -q -U google-genai
+#!pip install -q -U google-genai
 
 from google.colab import userdata
 import google.genai as genai
@@ -533,7 +533,7 @@ Finally, the updated customers, products, and sales tables are written directly 
 """
 
 # Connect pandas to Google BigQuery
-!pip install --upgrade pandas-gbq google-auth
+#!pip install --upgrade pandas-gbq google-auth
 
 df_clustered_customers = pd.concat([df_customers, customers_clustered['Cluster_ID']], axis=1) # concatenate the columns of cluster number to the original dataset
 #df_clustered_customers = pd.concat([df_clustered_customers, customers_clustered['Cluster_Label']], axis=1) # concatenate the columns of cluster labels to the original dataset
