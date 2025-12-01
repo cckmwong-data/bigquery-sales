@@ -51,7 +51,7 @@ This is a project covering an automated end-to-end data pipeline which performs 
 # (1) Import Libraries
 """
 
-!pip install kmodes # install kmodes for KPrototypes algorithm
+#!pip install kmodes # install kmodes for KPrototypes algorithm
 
 import pandas as pd
 import numpy as np
