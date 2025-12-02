@@ -473,18 +473,43 @@ Here is the cluster data (as JSON):
 # Feeding the summarized data of each segment into Gemini for generating cluster labels
 #RUN_GENAI = True
 
+# --- Gen-AI / labels section ---
+
 if RUN_GENAI:
-  print("Running Gen-AI labeling...")
-  labels_json = get_cluster_labels_from_gemini(cluster_summary_sorted)
+    print("RUN_GENAI=True → Running Gen-AI labeling...")
+
+    # Call Gemini to generate new labels
+    labels_json = get_cluster_labels_from_gemini(cluster_summary_sorted)
+
+    # Build df_labels from the JSON we just got
+    df_labels = pd.DataFrame.from_dict(labels_json, orient="index").reset_index()
+    df_labels = df_labels.rename(columns={"index": "cluster_id"})
+
 else:
-    print("Skipping Gen-AI — using saved labels from BigQuery.")
+    print("RUN_GENAI=False → Skipping Gen-AI, loading labels from BigQuery...")
 
-labels_json
+    # Load existing labels table from BigQuery
+    df_labels = read_gbq(
+        """
+        SELECT
+          CAST(cluster_id AS INT64) AS cluster_id,
+          cluster_name,
+          description
+        FROM `new-project-456705.portfolio.df_labels`
+        """,
+        project_id="new-project-456705",
+    )
 
-df_labels = pd.DataFrame.from_dict(labels_json, orient='index').reset_index()
-df_labels = df_labels.rename(columns={'index': 'cluster_id'})
-df_labels
+    # Reconstruct labels_json from df_labels (so the rest of the code still works)
+    labels_json = {
+        str(int(row.cluster_id)): {
+            "cluster_name": row.cluster_name,
+            "description": row.description,
+        }
+        for _, row in df_labels.iterrows()
+    }
 
+# From here on, labels_json and df_labels ALWAYS exist
 cluster_name_map = {int(k): v["cluster_name"] for k, v in labels_json.items()}
 cluster_desc_map = {int(k): v["description"] for k, v in labels_json.items()}
 
