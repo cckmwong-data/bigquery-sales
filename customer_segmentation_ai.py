@@ -62,6 +62,7 @@ from kmodes.kprototypes import KPrototypes
 from sklearn.decomposition import PCA
 from datetime import datetime
 from sklearn.preprocessing import MinMaxScaler
+from pandas_gbq import read_gbq  
 
 import random
 
