@@ -330,19 +330,31 @@ customers_clustered
 #!pip install -q -U google-genai
 
 #from google.colab import userdata
-import google.genai as genai
+if RUN_GENAI:
+    print("RUN_GENAI is True → setting up Gemini...")
 
-#api_key = userdata.get('GEMINI_API_KEY') # Extract the Gemini API key from secrets
+    import google.genai as genai
 
-# Try Colab userdata (only works in Colab)
-try:
-    from google.colab import userdata
-    api_key = userdata.get('GEMINI_API_KEY')
-except Exception:
-    # Fallback: use environment variable (GitHub Actions, local)
-    api_key = os.getenv("GEMINI_API_KEY")
+    # Try Colab userdata first (only in Colab)
+    try:
+        from google.colab import userdata
+        api_key = userdata.get('GEMINI_API_KEY')
+    except Exception:
+        # Fallback: environment variable (GitHub Actions, local)
+        api_key = os.getenv("GEMINI_API_KEY")
 
-client = genai.Client(api_key=api_key) # Create the Gemini client
+    if not api_key:
+        raise ValueError("RUN_GENAI=True but GEMINI_API_KEY is not set.")
+
+    client = genai.Client(api_key=api_key)
+
+    # now call Gemini
+    print("Running Gen-AI labeling...")
+    labels_json = get_cluster_labels_from_gemini(cluster_summary_sorted)
+
+else:
+    print("RUN_GENAI is False → skipping Gen-AI labeling and using saved labels from BigQuery.")
+    # TODO: set labels_json from a saved source instead of Gemini
 
 # Summarize the features for each cluster
 customers_clustered.groupby('Cluster').agg({
@@ -459,7 +471,7 @@ Here is the cluster data (as JSON):
     return labels_json
 
 # Feeding the summarized data of each segment into Gemini for generating cluster labels
-RUN_GENAI = True
+#RUN_GENAI = True
 
 if RUN_GENAI:
   print("Running Gen-AI labeling...")
