@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RUN_GENAI: "false"      # Gen-AI disabled in daily run
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
