@@ -332,7 +332,15 @@ customers_clustered
 #from google.colab import userdata
 import google.genai as genai
 
-api_key = userdata.get('GEMINI_API_KEY') # Extract the Gemini API key from secrets
+#api_key = userdata.get('GEMINI_API_KEY') # Extract the Gemini API key from secrets
+
+# Try Colab userdata (only works in Colab)
+try:
+    from google.colab import userdata
+    api_key = userdata.get('GEMINI_API_KEY')
+except Exception:
+    # Fallback: use environment variable (GitHub Actions, local)
+    api_key = os.getenv("GEMINI_API_KEY")
 
 client = genai.Client(api_key=api_key) # Create the Gemini client
 
