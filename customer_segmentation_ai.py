@@ -349,10 +349,6 @@ if RUN_GENAI:
 
     client = genai.Client(api_key=api_key)
 
-    # now call Gemini
-    print("Running Gen-AI labeling...")
-    labels_json = get_cluster_labels_from_gemini(cluster_summary_sorted)
-
 else:
     print("RUN_GENAI is False → skipping Gen-AI labeling and using saved labels from BigQuery.")
     # TODO: set labels_json from a saved source instead of Gemini
