@@ -34,4 +34,4 @@ jobs:
           echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcloud-key.json" >> $GITHUB_ENV
 
       - name: Run Python Script
-        run: python customer_segmentation_ai.py
+        run: python customer_segmentation_gh.py
