@@ -19,8 +19,10 @@ from sklearn.preprocessing import StandardScaler, normalize, OneHotEncoder
 from kmodes.kprototypes import KPrototypes
 from sklearn.decomposition import PCA
 from datetime import datetime
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
-from pandas_gbq import read_gbq  # add near other imports
+from sklearn.preprocessing import MinMaxScaler
+from pandas_gbq import read_gbq
+import gower
+from sklearn.metrics import silhouette_score
 
 import random
 
