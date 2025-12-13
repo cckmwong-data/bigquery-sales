@@ -413,12 +413,23 @@ Here is the cluster data (as JSON):
 # RUN_GENAI = True
 
 if RUN_GENAI:
-  print("Running Gen-AI labeling...")
-  labels_json = get_cluster_labels_from_gemini(cluster_summary_sorted)
+    print("Running Gen-AI labeling...")
+    labels_json = get_cluster_labels_from_gemini(cluster_summary_sorted)
 else:
-    print("Skipping Gen-AI — using saved labels from BigQuery.")
+    print("Skipping Gen-AI — loading labels from BigQuery.")
 
-labels_json
+    df_labels = read_gbq(
+        "SELECT cluster_id, cluster_name, description FROM portfolio.df_labels",
+        project_id="new-project-456705"
+    )
+
+    labels_json = {
+        str(row["cluster_id"]): {
+            "cluster_name": row["cluster_name"],
+            "description": row["description"]
+        }
+        for _, row in df_labels.iterrows()
+    }
 
 # Summary of the cluster names and their descriptions
 df_labels = pd.DataFrame.from_dict(labels_json, orient='index').reset_index()
