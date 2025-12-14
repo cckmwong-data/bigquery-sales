@@ -295,11 +295,11 @@ client = genai.Client(api_key=api_key) # Create the Gemini client
 
 # Summarize the features for each cluster
 customers_clustered.groupby('Cluster').agg({
-    "Age": "median",
+    "Age": "mean",
     "Marital_Status": lambda x: x.value_counts().index[0], # mode of marital status
-    "Income": "median",
-    "Tenure_Years": "median",
-    "Premium_to_Coverage": "median",
+    "Income": "mean",
+    "Tenure_Years": "mean",
+    "Premium_to_Coverage": "mean",
 })
 
 # rename the columns
@@ -307,27 +307,27 @@ cluster_summary = (
     customers_clustered
     .groupby('Cluster')
     .agg({
-        "Age": "median",
+        "Age": "mean",
         "Marital_Status": lambda x: x.value_counts().index[0],
-        "Income": "median",
-        "Tenure_Years": "median",
-        "Premium_to_Coverage": "median",
+        "Income": "mean",
+        "Tenure_Years": "mean",
+        "Premium_to_Coverage": "mean",
     })
     .rename(columns={
-        "Age": "Age_median",
+        "Age": "Age_avg",
         "Marital_Status": "Marital_Status_mode",
-        "Income": "Income_median",
-        "Tenure_Years": "Tenure_Years_median",
-        "Premium_to_Coverage": "Premium_to_Coverage_median",
+        "Income": "Income_avg",
+        "Tenure_Years": "Tenure_Years_avg",
+        "Premium_to_Coverage": "Premium_to_Coverage_avg",
     })
     .reset_index()
 )
 
 cluster_summary
 
-# Due to the randomness of cluster id, sort clusters by Age_median
+# Due to the randomness of cluster id, sort clusters by Age_avg
 cluster_summary_sorted = cluster_summary.sort_values(
-    ["Age_median"], ascending=[True]
+    ["Age_avg"], ascending=[True]
 ).reset_index(drop=True)
 
 # Assign deterministic IDs
@@ -341,7 +341,7 @@ id_map = dict(
 
 id_map
 
-# Drop the old cluster ID, replaced by new cluster ID based on the median age
+# Drop the old cluster ID, replaced by new cluster ID based on the mean age
 cluster_summary_sorted = cluster_summary_sorted.drop(['Cluster'], axis=1)
 cluster_summary_sorted
 
@@ -366,11 +366,11 @@ You are a marketing analyst for an insurance company.
 You will receive a list of customer clusters with summary statistics.
 Each record has:
 - Cluster: internal numeric ID
-- Age_median
+- Age_avg
 - Marital_Status_mode
-- Income_median
-- Tenure_Years_median
-- Premium_to_Coverage_median
+- Income_avg
+- Tenure_Years_avg
+- Premium_to_Coverage_avg
 
 Task:
 1. For each cluster, create:
